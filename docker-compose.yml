@@ -1,0 +1,35 @@
+# Docker Compose for Code Lantern
+#
+# Quick Start:
+#   docker-compose up --build
+#
+# Then open http://localhost:5173 in your browser
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8002:8000" # Mapped to 8002 to avoid conflicts with other local services
+    volumes:
+      - ./backend/processed_repos:/app/processed_repos
+    env_file:
+      - ./backend/.env
+    environment:
+      - GITHUB_REDIRECT_URI=http://localhost:8002/api/github/callback
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - VITE_API_URL=http://localhost:8002
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped

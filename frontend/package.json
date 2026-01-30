@@ -1,24 +1,25 @@
 {
-    "name": "frontend",
-    "version": "1.0.0",
-    "private": true,
-    "type": "module",
-    "dependencies": {
-      "cytoscape": "^3.33.1",
-      "react-cytoscapejs": "^2.0.0",
-      "react-router-dom": "^7.9.6"
-    },
-    "scripts": {
-      "dev": "vite",
-      "build": "vite build",
-      "preview": "vite preview"
-    },
-    "devDependencies": {
-      "@vitejs/plugin-react": "^5.1.1",
-      "autoprefixer": "^10.4.22",
-      "postcss": "^8.5.6",
-      "tailwindcss": "^3.4.13",
-      "vite": "^7.2.2"
-    }
+  "name": "frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "cytoscape": "^3.33.1",
+    "react-cytoscapejs": "^2.0.0",
+    "react-router-dom": "^7.9.6"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.1",
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.13",
+    "vite": "^7.2.2"
   }
-  
+}

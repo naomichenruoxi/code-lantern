@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.upload import router as upload_router
 from routes.analysis import router as analysis_router
+from routes.github import router as github_router
 
 app = FastAPI(title="Code Lantern API", version="1.0.0")
 
@@ -49,14 +50,20 @@ async def health():
 
 app.include_router(upload_router, prefix="/api")
 app.include_router(analysis_router, prefix="/api")
+app.include_router(github_router, prefix="/api")
+
+import os
+
+# ... imports ...
 
 if __name__ == "__main__":
     import uvicorn
+    port = int(os.getenv("PORT", 8000))
     uvicorn.run(
         "main:app", 
         host="0.0.0.0", 
-        port=8000, 
+        port=port, 
         reload=True,
-        reload_dirs=["routes", "core"],  # Only watch backend code, not processed_repos
+        reload_dirs=["routes", "core"],
         reload_excludes=["processed_repos/*"]
     )
